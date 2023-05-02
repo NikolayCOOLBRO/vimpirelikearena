@@ -12,5 +12,10 @@ namespace VampireLike.Core.Characters
         {
             return m_MainCharacter.transform;
         }
+
+        public void Move(Vector2 vector2)
+        {
+            m_MainCharacter.Move(vector2);
+        }
     }
 }

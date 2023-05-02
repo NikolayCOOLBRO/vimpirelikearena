@@ -16,8 +16,19 @@ namespace VampireLike.Core.General
 
         public void ControllersInit()
         {
+            m_PlayerInput.OnInput += OnDragJoystickPlayer;
             m_EnemeisController.SetAttaching(m_MainCharacterController);
+        }
 
+        private void OnDragJoystickPlayer(Vector2 vector2)
+        {
+            m_MainCharacterController.Move(vector2);
+            m_EnemeisController.Attach();
+        }
+
+        private void OnDestroy()
+        {
+            m_PlayerInput.OnInput += OnDragJoystickPlayer;
         }
     }
 }
