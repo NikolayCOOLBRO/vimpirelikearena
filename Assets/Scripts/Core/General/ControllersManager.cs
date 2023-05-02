@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using VampireLike.Core.Characters;
+using VampireLike.Core.Characters.Enemies;
+using VampireLike.Core.Input;
+
+namespace VampireLike.Core.General
+{
+
+    public class ControllersManager : MonoBehaviour
+    {
+        [SerializeField] private EnemeisController m_EnemeisController;
+        [SerializeField] private PlayerInput m_PlayerInput;
+        [SerializeField] private MainCharacterController m_MainCharacterController;
+
+        public void ControllersInit()
+        {
+            m_EnemeisController.SetAttaching(m_MainCharacterController);
+
+        }
+    }
+}
