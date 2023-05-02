@@ -16,5 +16,10 @@ namespace VampireLike.Core.Characters
 
             transform.position = newPostion;
         }
+
+        public void Stop()
+        {
+            return;
+        }
     }
 }

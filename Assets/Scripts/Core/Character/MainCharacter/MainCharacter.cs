@@ -5,13 +5,12 @@ using VampireLike.Core.Input;
 
 namespace VampireLike.Core.Characters
 {
-    public class MainCharacter : MonoBehaviour
+    public class MainCharacter : MonoBehaviour, IIniting
     {
-        
         private CharacterData m_CharacterData;
         private IMoving m_CharacterMovement;
 
-        private void Awake()
+        public void Init()
         {
             m_CharacterData = new CharacterData()
             {

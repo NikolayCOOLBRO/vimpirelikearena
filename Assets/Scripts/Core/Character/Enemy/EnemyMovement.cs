@@ -20,5 +20,10 @@ namespace VampireLike.Core.Characters.Enemies
 
             m_Tween.Play();
         }
+
+        public void Stop()
+        {
+            m_Tween?.Kill();
+        }
     }
 }

@@ -5,7 +5,7 @@ using VampireLike.Core.Input;
 
 namespace VampireLike.Core.Characters.Enemies
 {
-    public class EnemeisController : MonoBehaviour
+    public class EnemeisController : MonoBehaviour, IIniting, IAttaching
     {
         [SerializeField] private List<EnemyCharacter> m_Enemies;
 
@@ -31,6 +31,41 @@ namespace VampireLike.Core.Characters.Enemies
             {
                 enemy.Move(m_Attaching.GetTarget().position);
             }
+        }
+
+        public Transform GetTarget()
+        {
+            float distace = 0f;
+            EnemyCharacter enemyCharacter = null;
+
+            var position = m_Attaching.GetTarget().position;
+
+            foreach (var enemy in m_Enemies)
+            {
+                 float calculateDistance = Vector3.Distance(position, enemy.transform.position);
+                if (calculateDistance <= distace)
+                {
+                    distace = calculateDistance;
+                    enemyCharacter = enemy;
+                }
+            }
+
+            if (enemyCharacter != null)
+            {
+                return enemyCharacter.transform;
+            }
+
+            return null;
+        }
+
+        public void Init()
+        {
+            foreach (var enemy in m_Enemies)
+            {
+                enemy.Init();
+            }
+
+            Attach();
         }
 
         public void SetAttaching(IAttaching attaching)
