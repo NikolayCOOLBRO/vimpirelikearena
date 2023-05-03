@@ -41,7 +41,7 @@ namespace VampireLike.Core.Characters.Enemies
 
         public void TakeDamage(int damage)
         {
-            Debug.LogError("Enemy take Damage");
+            Debug.Log("Enemy take Damage");
         }
 
         private IEnumerator MoveCoroutine(IAttaching targetPosition)
@@ -56,6 +56,14 @@ namespace VampireLike.Core.Characters.Enemies
             m_IsMove = false;
 
             yield break;
+        }
+
+        private void OnCollisionStay(Collision collision)
+        {
+            if (collision.gameObject.TryGetComponent<ITakingDamage>(out var takingDamage))
+            {
+                takingDamage.TakeDamage(10);
+            }
         }
     }
 }

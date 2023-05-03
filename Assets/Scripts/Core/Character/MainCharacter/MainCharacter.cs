@@ -27,7 +27,7 @@ namespace VampireLike.Core.Characters
 
         public void TakeDamage(int damage)
         {
-            Debug.LogError("I take Damage");
+            Debug.Log("I take Damage");
         }
     }
 }

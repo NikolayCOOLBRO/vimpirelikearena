@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 534523747}
   - component: {fileID: 534523746}
   m_Layer: 8
-  m_Name: Enemy(Cube) (1)
+  m_Name: Enemy(Cube)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1115,11 +1115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartPoint: {fileID: 548454369}
   m_ProjectilePref: {fileID: 2114891264}
-  m_AttackSpeed: 4
+  m_AttackSpeed: 0.2
   m_ProjectileSpeed: 5
   m_Distance: 5
   m_Damage: 10
-  m_IsStop: 1
+  m_IsStop: 0
 --- !u!1 &621888570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,7 +1844,7 @@ Transform:
   m_GameObject: {fileID: 1230760341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.693, y: 0.62, z: 0.712}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   - {fileID: 1614065859}
   - {fileID: 534523746}
   - {fileID: 1733305171}
-  m_IsMove: 1
+  m_IsMove: 0
 --- !u!1 &1456348439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,7 +2229,7 @@ GameObject:
   - component: {fileID: 1733305172}
   - component: {fileID: 1733305171}
   m_Layer: 8
-  m_Name: Enemy(Cube) (2)
+  m_Name: Enemy(Cube)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2648,7 +2648,7 @@ Transform:
   m_GameObject: {fileID: 2114891258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.693, y: 0.62, z: 0.712}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
