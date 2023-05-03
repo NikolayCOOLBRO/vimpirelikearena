@@ -5,7 +5,7 @@ using VampireLike.Core.Input;
 
 namespace VampireLike.Core.Characters.Enemies
 {
-    public class EnemyCharacter : MonoBehaviour, IRotating
+    public class EnemyCharacter : MonoBehaviour, ITakingDamage
     {
         private CharacterData m_CharacterData;
         private IMoving m_CharacterMovement;
@@ -27,6 +27,11 @@ namespace VampireLike.Core.Characters.Enemies
         public void Rotate(Vector3 angle)
         {
             transform.eulerAngles = angle;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Debug.LogError("On hit");
         }
     }
 }

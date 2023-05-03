@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using VampireLike.Core.Input;
 
@@ -8,6 +9,7 @@ namespace VampireLike.Core.Characters.Enemies
     public class EnemeisController : MonoBehaviour, IIniting, IAttaching
     {
         [SerializeField] private List<EnemyCharacter> m_Enemies;
+        [SerializeField] private bool m_IsMove;
 
         private IAttaching m_Attaching;
 
@@ -27,6 +29,11 @@ namespace VampireLike.Core.Characters.Enemies
                 return;
             }
 
+            if (!m_IsMove)
+            {
+                return;
+            }
+
             foreach (var enemy in m_Enemies)
             {
                 enemy.Move(m_Attaching.GetTarget().position);
@@ -35,14 +42,16 @@ namespace VampireLike.Core.Characters.Enemies
 
         public Transform GetTarget()
         {
-            float distace = 0f;
             EnemyCharacter enemyCharacter = null;
 
             var position = m_Attaching.GetTarget().position;
+            float distace = Vector3.Distance(position, m_Enemies[0].transform.position);
 
             foreach (var enemy in m_Enemies)
             {
-                 float calculateDistance = Vector3.Distance(position, enemy.transform.position);
+                var ray = new Ray(position, enemy.transform.position);
+
+                float calculateDistance = Vector3.Distance(position, enemy.transform.position);
                 if (calculateDistance <= distace)
                 {
                     distace = calculateDistance;
@@ -50,12 +59,7 @@ namespace VampireLike.Core.Characters.Enemies
                 }
             }
 
-            if (enemyCharacter != null)
-            {
-                return enemyCharacter.transform;
-            }
-
-            return null;
+            return enemyCharacter.transform;
         }
 
         public void Init()
