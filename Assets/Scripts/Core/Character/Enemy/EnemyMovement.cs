@@ -7,23 +7,22 @@ namespace VampireLike.Core.Characters.Enemies
 {
     public class EnemyMovement : IMoving
     {
-        private Tween m_Tween;
+        private bool m_IsStop;
 
         public void Move(Vector3 direction, float speed, Transform transform)
         {
-            m_Tween?.Kill();
+            if (m_IsStop)
+            {
+                return;
+            }
 
-            m_Tween = DOTween.To(() => transform.position,
-                                        setter => transform.position = setter,
-                                        direction,
-                                        speed);
-
-            m_Tween.Play();
+            transform.position = Vector3.MoveTowards(transform.position, direction, speed);
+            
         }
 
         public void Stop()
         {
-            m_Tween?.Kill();
+            m_IsStop = true;
         }
     }
 }

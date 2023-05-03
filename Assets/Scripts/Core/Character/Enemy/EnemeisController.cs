@@ -36,7 +36,7 @@ namespace VampireLike.Core.Characters.Enemies
 
             foreach (var enemy in m_Enemies)
             {
-                enemy.Move(m_Attaching.GetTarget().position);
+                enemy.Move(m_Attaching);
             }
         }
 

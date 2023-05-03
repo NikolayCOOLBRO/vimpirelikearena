@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VampireLike.Core.Input;
+using VampireLike.Core.Weapons;
 
 namespace VampireLike.Core.Characters.Enemies
 {
     public class EnemyCharacter : MonoBehaviour, ITakingDamage
     {
+        [SerializeField] private Weapon m_Weapon;
+
         private CharacterData m_CharacterData;
         private IMoving m_CharacterMovement;
+
+        private bool m_IsMove;
 
         public void Init()
         {
@@ -19,9 +24,14 @@ namespace VampireLike.Core.Characters.Enemies
             m_CharacterMovement = new EnemyMovement();
         }
 
-        public void Move(Vector3 targetPosition)
+        public void Move(IAttaching targetPosition)
         {
-            m_CharacterMovement.Move(targetPosition, m_CharacterData.Speed, transform);
+            if (m_IsMove)
+            {
+                return;
+            }
+
+            StartCoroutine(MoveCoroutine(targetPosition));
         }
 
         public void Rotate(Vector3 angle)
@@ -31,7 +41,21 @@ namespace VampireLike.Core.Characters.Enemies
 
         public void TakeDamage(int damage)
         {
-            Debug.LogError("On hit");
+            Debug.LogError("Enemy take Damage");
+        }
+
+        private IEnumerator MoveCoroutine(IAttaching targetPosition)
+        {
+            while (gameObject.activeInHierarchy)
+            {
+                m_IsMove = true;
+                m_CharacterMovement.Move(targetPosition.GetTarget().position, m_CharacterData.Speed * Time.deltaTime, transform);
+                yield return null;
+            }
+
+            m_IsMove = false;
+
+            yield break;
         }
     }
 }

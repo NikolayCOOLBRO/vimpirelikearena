@@ -5,7 +5,7 @@ using VampireLike.Core.Input;
 
 namespace VampireLike.Core.Characters
 {
-    public class MainCharacter : MonoBehaviour, IIniting
+    public class MainCharacter : MonoBehaviour, IIniting, ITakingDamage
     {
         private CharacterData m_CharacterData;
         private IMoving m_CharacterMovement;
@@ -23,6 +23,11 @@ namespace VampireLike.Core.Characters
         public void Move(Vector2 deriction)
         {
             m_CharacterMovement.Move(new Vector3(deriction.x, 0f, deriction.y), m_CharacterData.Speed, transform);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Debug.LogError("I take Damage");
         }
     }
 }
