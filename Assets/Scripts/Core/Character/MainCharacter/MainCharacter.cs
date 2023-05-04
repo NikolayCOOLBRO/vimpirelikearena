@@ -7,6 +7,8 @@ namespace VampireLike.Core.Characters
 {
     public class MainCharacter : MonoBehaviour, IIniting, ITakingDamage
     {
+        [SerializeField] private Transform m_WeaponPoint;
+
         private CharacterData m_CharacterData;
         private IMoving m_CharacterMovement;
 

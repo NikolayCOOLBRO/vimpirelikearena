@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace VampireLike.Core.Weapons
 {
-    public class ProjectileWeaponView : MonoBehaviour
+    public enum WeaponType
     {
-
+        None,
+        SimpleWeaponProjectile,
+        Melee
     }
 }

@@ -8,7 +8,7 @@ namespace VampireLike.Core.Characters
     public class MainCharacterController : MonoBehaviour, IAttaching, IIniting
     {
         [SerializeField] private MainCharacter m_MainCharacter;
-        [SerializeField] private Weapon m_Weapon;
+        [SerializeField] private WeaponBehaviour m_Weapon;
 
         private IAttaching m_Attaching;
 
@@ -22,7 +22,6 @@ namespace VampireLike.Core.Characters
             }
 
             m_Attaching = attaching;
-            m_Weapon.SetTarget(m_Attaching);
         }
 
         public Transform GetTarget()
@@ -34,7 +33,7 @@ namespace VampireLike.Core.Characters
         {
             m_MainCharacter.Init();
 
-            StartCoroutine(m_Weapon.Shoot());
+            m_Weapon.Shoot();
         }
 
         public void Move(Vector2 vector2)
