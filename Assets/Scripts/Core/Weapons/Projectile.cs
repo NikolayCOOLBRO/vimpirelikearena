@@ -46,12 +46,12 @@ namespace VampireLike.Core.Weapons
         {
             m_IsMove = false;
 
+            gameObject.SetActive(false);
             if (collision.gameObject.TryGetComponent<ITakingDamage>(out var takingDamage))
             {
                 takingDamage.TakeDamage(Damage);
             }
 
-            gameObject.SetActive(false);
         }
     }
 }
