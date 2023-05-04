@@ -18,12 +18,12 @@ MonoBehaviour:
     m_AttackSpeed: 2
     m_Damage: 5
     m_ProjectileType: 1
-    m_ProjectileSpeed: 10
-    m_Distance: 4.5
+    m_ProjectileSpeed: 100
+    m_Distance: 50
   m_ListModelWeapons:
   - m_Name: Simple Projectile
     m_WeaponType: 1
-    m_WeaponBehaviour: {fileID: 0}
+    m_WeaponBehaviour: {fileID: 469436177383617848, guid: 5bd930b9bf2eb444a8e749531144fee2, type: 3}
   m_ListModelProjectile:
   - m_Name: Simple Projectile
     m_ProjectileType: 1

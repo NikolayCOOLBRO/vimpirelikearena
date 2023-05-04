@@ -50,10 +50,9 @@ namespace VampireLike
             }
         }
 
-        public void CreateParent(string nameParent)
+        public void CreateParent(Transform parent)
         {
-            var parent = GameObject.Instantiate(new GameObject("Pool_" + nameParent));
-            m_Parent = parent.transform;
+            m_Parent = parent;
         }
     }
 }

@@ -5,13 +5,22 @@ using UnityEngine;
 namespace VampireLike.Core.Weapons
 {
 
-    public class CharacterWeapon
+    public class CharacterWeapon : INeeding<IAttaching>
     {
         private List<WeaponBehaviour> m_Weapons;
+        private IAttaching m_Attaching;
 
         public CharacterWeapon()
         {
             m_Weapons = new List<WeaponBehaviour>();
+        }
+
+        public void Init()
+        {
+            foreach (var item in m_Weapons)
+            {
+                item.Init();
+            }
         }
 
         public void Start()
@@ -39,6 +48,11 @@ namespace VampireLike.Core.Weapons
                 return;
             }
 
+            if (weapon.TryGetComponent<ProjectileWeapon>(out var projectileWeapon))
+            {
+                projectileWeapon.Set(m_Attaching);
+            }
+
             m_Weapons.Add(weapon);
         }
 
@@ -52,6 +66,11 @@ namespace VampireLike.Core.Weapons
             }
 
             m_Weapons.Remove(weapon);
+        }
+
+        public void Set(IAttaching generic)
+        {
+            m_Attaching = generic;
         }
     }
 }

@@ -12,6 +12,8 @@ namespace VampireLike.Core.Characters
         private CharacterData m_CharacterData;
         private IMoving m_CharacterMovement;
 
+        public Transform WeaponPoint => m_WeaponPoint;
+
         public void Init()
         {
             m_CharacterData = new CharacterData()

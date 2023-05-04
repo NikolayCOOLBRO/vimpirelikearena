@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace VampireLike.Core.Weapons
 {
+    [System.Serializable]
     public class ProjectileWeaponData : WeaponData
     {
         public Projectile ProjectilePref { get; set; }

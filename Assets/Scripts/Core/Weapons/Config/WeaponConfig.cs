@@ -53,11 +53,11 @@ namespace VampireLike.Core.Weapons
     {
         [SerializeField] private string m_Name;
         [SerializeField] private WeaponType m_WeaponType;
-        [SerializeField] private WeaponBehaviour m_WeaponBehaviour;
+        [SerializeField] private ProjectileWeapon m_WeaponBehaviour;
 
         public string Name => m_Name;
         public WeaponType WeaponType => m_WeaponType;
-        public WeaponBehaviour WeaponBehaviour => m_WeaponBehaviour;
+        public ProjectileWeapon WeaponBehaviour => m_WeaponBehaviour;
     }
 
     [System.Serializable]

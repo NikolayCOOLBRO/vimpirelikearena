@@ -5,10 +5,11 @@ using VampireLike.Core.Weapons;
 
 namespace VampireLike.Core.Characters
 {
-    public class MainCharacterController : MonoBehaviour, IAttaching, IIniting
+    public class MainCharacterController : MonoBehaviour, IAttaching, IIniting, INeedingWeapon
     {
         [SerializeField] private MainCharacter m_MainCharacter;
-        [SerializeField] private WeaponBehaviour m_Weapon;
+
+        private CharacterWeapon m_CharacterWeapon;
 
         private IAttaching m_Attaching;
 
@@ -32,8 +33,17 @@ namespace VampireLike.Core.Characters
         public void Init()
         {
             m_MainCharacter.Init();
+            m_CharacterWeapon.Init();
+        }
 
-            m_Weapon.Shoot();
+        public void StartShoot()
+        {
+            m_CharacterWeapon.Start();
+        }
+
+        public void StopShoot()
+        {
+            m_CharacterWeapon.Stop();
         }
 
         public void Move(Vector2 vector2)
@@ -41,5 +51,25 @@ namespace VampireLike.Core.Characters
             m_MainCharacter.Move(vector2);
         }
 
+        public WeaponType GetType()
+        {
+            return WeaponType.SimpleWeaponProjectile;
+        }
+
+        public Transform Where()
+        {
+            return m_MainCharacter.WeaponPoint;
+        }
+
+        public void Set(WeaponBehaviour generic)
+        {
+            if (m_CharacterWeapon == null)
+            {
+                m_CharacterWeapon = new CharacterWeapon();
+                m_CharacterWeapon.Set(m_Attaching);
+            }
+
+            m_CharacterWeapon.AddWeapon(generic);
+        }
     }
 }

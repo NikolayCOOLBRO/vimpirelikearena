@@ -8,6 +8,8 @@ namespace VampireLike.Core.Weapons
     {
         protected WeaponData m_WeaponData;
 
+        public abstract void Init();
+
         public abstract void Shoot();
 
         public abstract void Stop();
@@ -16,7 +18,7 @@ namespace VampireLike.Core.Weapons
         {
             if (weaponData == null)
             {
-                Debug.LogError($"Class: {nameof(WeaponBehaviour)}." +
+                Debug.LogError($"Class: {nameof(ProjectileWeapon)}." +
                     $"\nMethode: - {nameof(SetWeaponData)}. Null References - {nameof(weaponData)}");
                 return;
             }

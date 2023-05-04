@@ -13,11 +13,10 @@ namespace VampireLike.Core.Weapons
         private PoolBehaviour<Projectile> m_Pool;
         private ProjectileWeaponData m_ProjectileWeaponData;
 
-
-        private void Awake()
+        public override void Init()
         {
             m_Pool = new PoolBehaviour<Projectile>();
-            m_Pool.CreateParent("HeroProjectile");
+            m_Pool.CreateParent(transform);
             m_Pool.Pooling(m_ProjectileWeaponData.ProjectilePref, 15);
         }
 

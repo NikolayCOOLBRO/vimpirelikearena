@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace VampireLike.Core.Weapons
+namespace VampireLike.Core
 {
-    public class WeaponConfigurate : MonoBehaviour
+    public interface IBuilder<TResult>
     {
-        
+        TResult Build();
     }
 }
