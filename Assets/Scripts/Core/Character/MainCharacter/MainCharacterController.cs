@@ -8,6 +8,7 @@ namespace VampireLike.Core.Characters
     public class MainCharacterController : MonoBehaviour, IAttaching, IIniting, INeedingWeapon
     {
         [SerializeField] private MainCharacter m_MainCharacter;
+        [SerializeField] private WeaponType m_WeaponType;
 
         private CharacterWeapon m_CharacterWeapon;
 
@@ -51,9 +52,9 @@ namespace VampireLike.Core.Characters
             m_MainCharacter.Move(vector2);
         }
 
-        public WeaponType GetType()
+        public WeaponType GetWeaponType()
         {
-            return WeaponType.SimpleWeaponProjectile;
+            return m_WeaponType;
         }
 
         public Transform Where()
@@ -63,6 +64,7 @@ namespace VampireLike.Core.Characters
 
         public void Set(WeaponBehaviour generic)
         {
+            generic.gameObject.layer = 7;
             if (m_CharacterWeapon == null)
             {
                 m_CharacterWeapon = new CharacterWeapon();

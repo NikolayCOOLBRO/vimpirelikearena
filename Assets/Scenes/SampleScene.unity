@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MainCharacter: {fileID: 442098296}
+  m_WeaponType: 2
 --- !u!114 &230845864 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
@@ -545,6 +546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WeaponPoint: {fileID: 595034206}
+  m_SafeTime: 0.25
+  m_TakeDamage: 1
 --- !u!1 &555584403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1320684059}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1750,8 +1753,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Size: {x: 1.0000001, y: 1.0569572, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: -0.0005134344, z: -0.00000011920929}
 --- !u!54 &1614065858
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1780,7 +1783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b47aee581c45594c935d91a69403b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WeaponPoint: {fileID: 0}
+  m_WeaponPoint: {fileID: 9632098}
+  m_WeaponType: 1
 --- !u!1 &1841303327
 GameObject:
   m_ObjectHideFlags: 0

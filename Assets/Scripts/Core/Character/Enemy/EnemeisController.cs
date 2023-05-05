@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using VampireLike.Core.Input;
+using VampireLike.Core.Weapons;
 
 namespace VampireLike.Core.Characters.Enemies
 {
@@ -12,6 +13,8 @@ namespace VampireLike.Core.Characters.Enemies
         [SerializeField] private bool m_IsMove;
 
         private IAttaching m_Attaching;
+
+        public IEnumerable<INeedingWeapon> NeedingWeapons => m_Enemies.OfType<INeedingWeapon>();
 
         public void Attach()
         {
@@ -37,6 +40,22 @@ namespace VampireLike.Core.Characters.Enemies
             foreach (var enemy in m_Enemies)
             {
                 enemy.Move(m_Attaching);
+            }
+        }
+
+        public void StartShoot()
+        {
+            foreach (var item in m_Enemies)
+            {
+                item.StartShoot();
+            }
+        }
+
+        public void StopShoot()
+        {
+            foreach (var item in m_Enemies)
+            {
+                item.StopShoot();
             }
         }
 
@@ -66,6 +85,7 @@ namespace VampireLike.Core.Characters.Enemies
         {
             foreach (var enemy in m_Enemies)
             {
+                enemy.Set(m_Attaching);
                 enemy.Init();
             }
 
@@ -82,6 +102,10 @@ namespace VampireLike.Core.Characters.Enemies
             }
 
             m_Attaching = attaching;
+            foreach (var item in m_Enemies)
+            {
+                item.Set(m_Attaching);
+            }
         }
     }
 }

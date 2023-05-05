@@ -15,27 +15,16 @@ namespace VampireLike.Core.Weapons
 
             var dto = new WeaponDTO();
 
-            if (!data.ProjectileType.Equals(ProjectileType.None))
-            {
-                var projectile = m_WeaponConfig.ListModelProjectile.Find(item => item.ProjectileType.Equals(data.ProjectileType));
+            var projectile = m_WeaponConfig.ListModelProjectile.Find(item => item.ProjectileType.Equals(data.ProjectileType));
 
-                dto.WeaponData = new ProjectileWeaponData()
-                {
-                    Damage = data.Damage,
-                    AttackSpeed = data.AttackSpeed,
-                    ProjectileSpeed = data.ProjectileSpeed,
-                    Distance = data.Distance,
-                    ProjectilePref = projectile.Projectile
-                };
-            }
-            else
+            dto.WeaponData = new ProjectileWeaponData()
             {
-                dto.WeaponData = new WeaponData()
-                {
-                    Damage = data.Damage,
-                    AttackSpeed = data.AttackSpeed
-                };
-            }
+                Damage = data.Damage,
+                AttackSpeed = data.AttackSpeed,
+                ProjectileSpeed = data.ProjectileSpeed,
+                Distance = data.Distance,
+                ProjectilePref = projectile.Projectile
+            };
 
 
             dto.WeaponBehaviour = prefab.WeaponBehaviour;

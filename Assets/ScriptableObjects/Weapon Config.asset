@@ -20,11 +20,37 @@ MonoBehaviour:
     m_ProjectileType: 1
     m_ProjectileSpeed: 100
     m_Distance: 50
+  - m_Name: Melee Weapon
+    m_WeaponType: 2
+    m_AttackSpeed: 0.5
+    m_Damage: 5
+    m_ProjectileType: 2
+    m_ProjectileSpeed: 1
+    m_Distance: 1
+  - m_Name: Tangent Weapon
+    m_WeaponType: 3
+    m_AttackSpeed: 0.5
+    m_Damage: 10
+    m_ProjectileType: 0
+    m_ProjectileSpeed: 0
+    m_Distance: 0
   m_ListModelWeapons:
   - m_Name: Simple Projectile
     m_WeaponType: 1
     m_WeaponBehaviour: {fileID: 469436177383617848, guid: 5bd930b9bf2eb444a8e749531144fee2, type: 3}
+  - m_Name: Tangent Weapon
+    m_WeaponType: 3
+    m_WeaponBehaviour: {fileID: 744339978039708569, guid: 5c4819dbbd5d3474087340178df3aa2e, type: 3}
+  - m_Name: Tangent Weapon
+    m_WeaponType: 2
+    m_WeaponBehaviour: {fileID: 8551724534071085408, guid: 7338f5a3357619d4c809617cd5d6174b, type: 3}
   m_ListModelProjectile:
   - m_Name: Simple Projectile
     m_ProjectileType: 1
     m_Projectile: {fileID: 389183351317148244, guid: d2425206efd9ef94f8aba21ddd7d2285, type: 3}
+  - m_Name: Melee Projectile
+    m_ProjectileType: 2
+    m_Projectile: {fileID: 717836091102443425, guid: be2e1e80b198cf949beb36785bb3b0ba, type: 3}
+  - m_Name: None
+    m_ProjectileType: 0
+    m_Projectile: {fileID: 717836091102443425, guid: be2e1e80b198cf949beb36785bb3b0ba, type: 3}

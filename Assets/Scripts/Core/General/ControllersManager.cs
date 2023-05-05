@@ -21,6 +21,7 @@ namespace VampireLike.Core.General
             m_EnemeisController.SetAttaching(m_MainCharacterController);
             m_MainCharacterController.SetAttaching(m_EnemeisController);
             m_WeaponsController.GaveWeapon(m_MainCharacterController);
+            m_WeaponsController.GaveWeapons(m_EnemeisController.NeedingWeapons);
 
             m_PlayerInput.OnInput += OnDragJoystickPlayer;
 
@@ -29,6 +30,7 @@ namespace VampireLike.Core.General
 
 
             m_MainCharacterController.StartShoot();
+            m_EnemeisController.StartShoot();
         }
 
         private void OnDragJoystickPlayer(Vector2 vector2)

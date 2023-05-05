@@ -68,6 +68,7 @@ namespace VampireLike.Core.Weapons
                 }
 
                 var projectile = m_Pool.Take();
+                projectile.gameObject.layer = gameObject.layer;
                 projectile.transform.position = m_StartPoint.position;
                 projectile.Damage = m_ProjectileWeaponData.Damage;
                 projectile.Move(m_ProjectileWeaponData.ProjectileSpeed, m_Attaching.GetTarget().position, m_ProjectileWeaponData.Distance);

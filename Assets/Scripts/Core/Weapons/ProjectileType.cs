@@ -8,6 +8,7 @@ namespace VampireLike.Core.Weapons
     public enum ProjectileType 
     {
         None,
-        SimpleProjectile
+        SimpleProjectile,
+        MeleeProjectile
     }
 }

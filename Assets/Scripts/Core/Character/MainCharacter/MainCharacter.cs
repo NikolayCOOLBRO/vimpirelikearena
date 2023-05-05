@@ -9,6 +9,9 @@ namespace VampireLike.Core.Characters
     {
         [SerializeField] private Transform m_WeaponPoint;
 
+        [SerializeField] private float m_SafeTime;
+        [SerializeField] private bool m_TakeDamage;
+
         private CharacterData m_CharacterData;
         private IMoving m_CharacterMovement;
 
@@ -31,7 +34,22 @@ namespace VampireLike.Core.Characters
 
         public void TakeDamage(int damage)
         {
+            if (!m_TakeDamage)
+            {
+                return;
+            }
+
+            m_TakeDamage = false;
+
             Debug.Log("I take Damage");
+
+            StartCoroutine(TakeDamageCoroutine());
+        }
+
+        private IEnumerator TakeDamageCoroutine()
+        {
+            yield return new WaitForSeconds(m_SafeTime);
+            m_TakeDamage = true;
         }
     }
 }

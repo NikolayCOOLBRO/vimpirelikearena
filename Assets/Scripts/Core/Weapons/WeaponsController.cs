@@ -9,18 +9,28 @@ namespace VampireLike.Core.Weapons
     {
         [SerializeField] private WeaponConfigurator m_WeaponConfigurator;
 
+        public void GaveWeapons(IEnumerable<INeedingWeapon> needingWeapons)
+        {
+            foreach (var item in needingWeapons)
+            {
+                GaveWeapon(item);
+            }
+        }
+
         public void GaveWeapon(INeedingWeapon needingWeapon)
         {
-            var data = m_WeaponConfigurator.GetData(needingWeapon.GetType());
-
-            if (needingWeapon.GetType().Equals(WeaponType.SimpleWeaponProjectile))
+            if (needingWeapon.GetWeaponType().Equals(WeaponType.None))
             {
-                var builder = new WeaponBuilder(needingWeapon.Where())
-                                    .SetWeaponData(data.WeaponData)
-                                    .SetWeaponBehaviour(data.WeaponBehaviour);
-
-                needingWeapon.Set(builder.Build());
+                return;
             }
+
+            var data = m_WeaponConfigurator.GetData(needingWeapon.GetWeaponType());
+
+            var builder = new WeaponBuilder(needingWeapon.Where())
+                                .SetWeaponData(data.WeaponData)
+                                .SetWeaponBehaviour(data.WeaponBehaviour);
+
+            needingWeapon.Set(builder.Build());
         }
 
 

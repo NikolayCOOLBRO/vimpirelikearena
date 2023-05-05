@@ -15,6 +15,9 @@ namespace VampireLike.Core.Characters
             var newPostion = currentPostion + directionVector3 * speed * Time.deltaTime;
 
             transform.position = newPostion;
+            var quaternion = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, quaternion, 360f);
+            
         }
 
         public void Stop()
