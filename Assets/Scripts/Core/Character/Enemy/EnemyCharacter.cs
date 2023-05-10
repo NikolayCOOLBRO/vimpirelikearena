@@ -84,7 +84,7 @@ namespace VampireLike.Core.Characters.Enemies
 
         private IEnumerator StopTakeDamage()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
             m_Moving.Start();
         }
 

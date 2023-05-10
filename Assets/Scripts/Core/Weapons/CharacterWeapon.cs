@@ -53,6 +53,11 @@ namespace VampireLike.Core.Weapons
                 projectileWeapon.Set(m_Attaching);
             }
 
+            if (weapon.TryGetComponent<DirectWeapon>(out var directWeapon))
+            {
+                directWeapon.Set(m_Attaching);
+            }
+
             m_Weapons.Add(weapon);
         }
 

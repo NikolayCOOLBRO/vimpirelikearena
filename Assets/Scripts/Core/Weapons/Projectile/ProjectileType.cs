@@ -9,6 +9,7 @@ namespace VampireLike.Core.Weapons
     {
         None,
         SimpleProjectile,
-        MeleeProjectile
+        MeleeProjectile,
+        DirectProjectile
     }
 }

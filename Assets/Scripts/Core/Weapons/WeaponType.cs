@@ -9,6 +9,7 @@ namespace VampireLike.Core.Weapons
         None,
         SimpleWeaponProjectile,
         Melee,
-        Tangent
+        Tangent,
+        Direct
     }
 }
