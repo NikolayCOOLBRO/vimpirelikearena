@@ -68,15 +68,22 @@ namespace VampireLike.Core.Weapons
                 }
 
                 var projectile = m_Pool.Take();
+                projectile.transform.SetParent(null);
                 projectile.gameObject.layer = gameObject.layer;
                 projectile.transform.position = m_StartPoint.position;
                 projectile.Damage = m_ProjectileWeaponData.Damage;
+                projectile.RepulsiveForce = m_ProjectileWeaponData.RepulsiveForce;
                 projectile.Move(m_ProjectileWeaponData.ProjectileSpeed, m_Attaching.GetTarget().position, m_ProjectileWeaponData.Distance);
 
                 yield return new WaitForSeconds(m_ProjectileWeaponData.AttackSpeed);
             }
 
             yield break;
+        }
+
+        private void OnHit(Projectile projectile)
+        {
+            m_Pool.ReturnToPool(projectile);
         }
     }
 }

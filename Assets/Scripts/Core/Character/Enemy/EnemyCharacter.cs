@@ -6,7 +6,7 @@ using VampireLike.Core.Weapons;
 
 namespace VampireLike.Core.Characters.Enemies
 {
-    public class EnemyCharacter : MonoBehaviour, ITakingDamage, INeedingWeapon, INeeding<IAttaching>
+    public class EnemyCharacter : GameCharacterBehaviour, INeedingWeapon, INeeding<IAttaching>
     {
         [SerializeField] private Transform m_WeaponPoint;
         [SerializeField] private WeaponType m_WeaponType;
@@ -63,11 +63,6 @@ namespace VampireLike.Core.Characters.Enemies
         public void Set(IAttaching generic)
         {
             m_Attaching = generic;
-        }
-
-        public void TakeDamage(int damage)
-        {
-            Debug.Log("Enemy take Damage");
         }
 
         public Transform Where()

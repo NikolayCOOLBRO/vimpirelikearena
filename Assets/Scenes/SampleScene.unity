@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MainCharacter: {fileID: 442098296}
-  m_WeaponType: 1
+  m_WeaponType: 2
 --- !u!114 &230845864 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
@@ -1686,7 +1686,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614065853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.62, z: 11.3}
+  m_LocalPosition: {x: 0, y: 0.62, z: 3.39}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 9632098}
@@ -1784,7 +1784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WeaponPoint: {fileID: 9632098}
-  m_WeaponType: 1
+  m_WeaponType: 3
 --- !u!1 &1841303327
 GameObject:
   m_ObjectHideFlags: 0

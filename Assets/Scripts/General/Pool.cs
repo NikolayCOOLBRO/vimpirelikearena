@@ -31,6 +31,11 @@ namespace VampireLike
 
         public void ReturnToPool(T obj)
         {
+            if (m_Parent != null)
+            {
+                obj.transform.SetParent(m_Parent);
+            }
+
             obj.gameObject.SetActive(false);
         }
 

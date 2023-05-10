@@ -9,15 +9,19 @@ namespace VampireLike.Core.Characters.Enemies
     {
         private bool m_IsStop;
 
-        public void Move(Vector3 direction, float speed, Transform transform)
+        public void Move(Vector3 target, float speed, Transform transform)
         {
             if (m_IsStop)
             {
                 return;
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, direction, speed);
-            
+            transform.position = Vector3.MoveTowards(transform.position, target, speed);
+            var direction = (target - transform.position).normalized;
+
+            var lookRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, speed);
         }
 
         public void Stop()

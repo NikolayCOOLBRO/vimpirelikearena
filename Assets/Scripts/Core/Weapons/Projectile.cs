@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,11 @@ namespace VampireLike.Core.Weapons
 
     public class Projectile : MonoBehaviour
     {
+        public event Action<Projectile> OnHit;
+
         public int Damage { get; set; }
+
+        public float RepulsiveForce { get; set; }
 
         private bool m_IsMove;
         private float m_Speed;
@@ -25,7 +30,7 @@ namespace VampireLike.Core.Weapons
             m_StartPosition = transform.position;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (!m_IsMove)
             {
@@ -33,9 +38,23 @@ namespace VampireLike.Core.Weapons
             }
 
             var step = m_Speed * Time.deltaTime;
+            var oldPostion = transform.position;
+
             transform.position = Vector3.MoveTowards(transform.position, m_Target, step);
 
+            var direction = (m_Target - transform.position).normalized;
+
+            var lookRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, step);
+
             if (Vector3.Distance(m_StartPosition, transform.position) >= m_Distance)
+            {
+                m_IsMove = false;
+                gameObject.SetActive(false);
+            }
+
+            if (Vector3.Distance(oldPostion, transform.position) <= float.Epsilon)
             {
                 m_IsMove = false;
                 gameObject.SetActive(false);
@@ -52,6 +71,20 @@ namespace VampireLike.Core.Weapons
                 takingDamage.TakeDamage(Damage);
             }
 
+            if (collision.gameObject.TryGetComponent<IRepelled>(out var repelled))
+            {
+                 repelled.Push(transform.forward, RepulsiveForce);
+            }
+
+            Hit();
+        }
+
+        private void Hit()
+        {
+            gameObject.SetActive(false);
+
+
+            OnHit?.Invoke(this);
         }
     }
 }
