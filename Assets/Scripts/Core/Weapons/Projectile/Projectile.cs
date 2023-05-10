@@ -21,6 +21,13 @@ namespace VampireLike.Core.Weapons
         private Vector3 m_Target;
         private Vector3 m_StartPosition;
 
+        private IMoving m_Moving;
+
+        public void SetMovement(IMoving moving)
+        {
+            m_Moving = moving;
+        }
+
         public void Move(float speed, Vector3 point, float distance)
         {
             m_Speed = speed;
@@ -34,19 +41,14 @@ namespace VampireLike.Core.Weapons
         {
             if (!m_IsMove)
             {
+                gameObject.SetActive(false);
                 return;
             }
 
             var step = m_Speed * Time.deltaTime;
             var oldPostion = transform.position;
 
-            transform.position = Vector3.MoveTowards(transform.position, m_Target, step);
-
-            var direction = (m_Target - transform.position).normalized;
-
-            var lookRotation = Quaternion.LookRotation(direction);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, step);
+            m_Moving.Move(m_Target, step, transform);
 
             if (Vector3.Distance(m_StartPosition, transform.position) >= m_Distance)
             {

@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,8 @@ namespace VampireLike.Core.Characters.Enemies
 {
     public class EnemeisController : MonoBehaviour, IIniting, IAttaching
     {
+        public event Action OnAllDeadEnemies;
+
         [SerializeField] private List<EnemyCharacter> m_Enemies;
         [SerializeField] private bool m_IsMove;
 
@@ -61,7 +65,12 @@ namespace VampireLike.Core.Characters.Enemies
 
         public Transform GetTarget()
         {
-            EnemyCharacter enemyCharacter = null;
+            if (m_Enemies.Count == 0)
+            {
+                return null;
+            }
+
+            Transform enemyCharacter = null;
 
             var position = m_Attaching.GetTarget().position;
             float distace = Vector3.Distance(position, m_Enemies[0].transform.position);
@@ -74,11 +83,11 @@ namespace VampireLike.Core.Characters.Enemies
                 if (calculateDistance <= distace)
                 {
                     distace = calculateDistance;
-                    enemyCharacter = enemy;
+                    enemyCharacter = enemy.transform;
                 }
             }
 
-            return enemyCharacter.transform;
+            return enemyCharacter;
         }
 
         public void Init()
@@ -93,6 +102,7 @@ namespace VampireLike.Core.Characters.Enemies
                 enemy.SetCharacterMovement(new EnemyMovement());
                 enemy.Set(m_Attaching);
                 enemy.Init();
+                enemy.OnDie += OnEnemyDie;
             }
 
             Attach();
@@ -111,6 +121,19 @@ namespace VampireLike.Core.Characters.Enemies
             foreach (var item in m_Enemies)
             {
                 item.Set(m_Attaching);
+            }
+        }
+
+        public void OnEnemyDie(GameCharacterBehaviour characterBehaviour)
+        {
+            characterBehaviour.OnDie -= OnEnemyDie;
+            characterBehaviour.gameObject.SetActive(false);
+            m_Enemies.Remove(characterBehaviour.GetComponent<EnemyCharacter>());
+
+
+            if (m_Enemies.Count == 0)
+            {
+                OnAllDeadEnemies?.Invoke();
             }
         }
     }

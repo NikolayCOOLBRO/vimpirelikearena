@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 744339978039708568}
   - component: {fileID: 744339978039708569}
   m_Layer: 8
-  m_Name: MeleeWeapon
+  m_Name: TangentWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

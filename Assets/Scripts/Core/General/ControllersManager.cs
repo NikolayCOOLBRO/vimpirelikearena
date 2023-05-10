@@ -24,6 +24,7 @@ namespace VampireLike.Core.General
             m_WeaponsController.GaveWeapons(m_EnemeisController.NeedingWeapons);
 
             m_PlayerInput.OnInput += OnDragJoystickPlayer;
+            m_EnemeisController.OnAllDeadEnemies += m_MainCharacterController.StopShoot;
 
             m_EnemeisController.Init();
             m_MainCharacterController.Init();
@@ -41,7 +42,9 @@ namespace VampireLike.Core.General
 
         private void OnDestroy()
         {
-            m_PlayerInput.OnInput += OnDragJoystickPlayer;
+            m_PlayerInput.OnInput -= OnDragJoystickPlayer;
+            m_EnemeisController.OnAllDeadEnemies -= m_MainCharacterController.StopShoot;
+
         }
     }
 }

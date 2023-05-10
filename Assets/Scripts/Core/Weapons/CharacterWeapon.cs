@@ -71,6 +71,14 @@ namespace VampireLike.Core.Weapons
         public void Set(IAttaching generic)
         {
             m_Attaching = generic;
+
+            foreach (var item in m_Weapons)
+            {
+                if (item.TryGetComponent<INeeding<IAttaching>>(out var projectileWeapon))
+                {
+                    projectileWeapon.Set(m_Attaching);
+                }
+            }
         }
     }
 }

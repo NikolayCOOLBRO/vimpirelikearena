@@ -36,7 +36,7 @@ namespace VampireLike.Core.Characters
             m_MainCharacter.SetCharacterMovement(new CharacterMovement());
             m_MainCharacter.SetCharacterData(new CharacterData()
             {
-                Speed = 20,
+                Speed = 5,
                 HealthPoints = 20,
                 ScaleDamage = 1
             });

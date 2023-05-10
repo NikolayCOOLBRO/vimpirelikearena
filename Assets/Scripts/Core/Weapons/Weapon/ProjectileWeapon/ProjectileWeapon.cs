@@ -13,11 +13,14 @@ namespace VampireLike.Core.Weapons
         private PoolBehaviour<Projectile> m_Pool;
         private ProjectileWeaponData m_ProjectileWeaponData;
 
+        private IMoving m_Moving;
+
         public override void Init()
         {
             m_Pool = new PoolBehaviour<Projectile>();
             m_Pool.CreateParent(transform);
             m_Pool.Pooling(m_ProjectileWeaponData.ProjectilePref, 15);
+            m_Moving = new ProjectileMovement();
         }
 
         public void Set(IAttaching generic)
@@ -32,7 +35,9 @@ namespace VampireLike.Core.Weapons
 
         public override void Stop()
         {
+            StopCoroutine(ShootCoroutine());
             m_IsStop = false;
+            m_Pool.ReturnAllPull();
         }
 
         public override void SetWeaponData(WeaponData weaponData)
@@ -64,7 +69,7 @@ namespace VampireLike.Core.Weapons
             {
                 if (m_IsStop)
                 {
-                    break;
+                    yield break;
                 }
 
                 var projectile = m_Pool.Take();
@@ -73,6 +78,12 @@ namespace VampireLike.Core.Weapons
                 projectile.transform.position = m_StartPoint.position;
                 projectile.Damage = m_ProjectileWeaponData.Damage;
                 projectile.RepulsiveForce = m_ProjectileWeaponData.RepulsiveForce;
+
+                if (m_Attaching.GetTarget() == null)
+                {
+                    yield break;
+                }
+                projectile.SetMovement(m_Moving);
                 projectile.Move(m_ProjectileWeaponData.ProjectileSpeed, m_Attaching.GetTarget().position, m_ProjectileWeaponData.Distance);
 
                 yield return new WaitForSeconds(m_ProjectileWeaponData.AttackSpeed);

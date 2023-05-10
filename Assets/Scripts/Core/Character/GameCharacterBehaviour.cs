@@ -9,6 +9,7 @@ namespace VampireLike.Core.Characters
     public abstract class GameCharacterBehaviour : MonoBehaviour, ITakingDamage, IRepelled, IIniting
     {
         public event Action<GameCharacterBehaviour> OnTakeDamage;
+        public event Action<GameCharacterBehaviour> OnDie;
 
         private int m_CurrentHealthPoint;
         public int CurrentHealthPoint => m_CurrentHealthPoint;
@@ -54,7 +55,8 @@ namespace VampireLike.Core.Characters
 
         public void Die()
         {
-            Debug.LogError(gameObject.name + " - I dead.");
+            Debug.Log(gameObject.name + " - I dead.");
+            OnDie?.Invoke(this);
         }
     }
 }

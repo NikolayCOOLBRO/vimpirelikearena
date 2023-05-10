@@ -7,8 +7,6 @@ namespace VampireLike.Core.Weapons
 
     public class TangentWeapon : WeaponBehaviour
     {
-
-
         public override void Init()
         {
             
@@ -29,6 +27,11 @@ namespace VampireLike.Core.Weapons
             if (collision.gameObject.TryGetComponent<ITakingDamage>(out var takingDamage))
             {
                 takingDamage.TakeDamage(m_WeaponData.Damage);
+            }
+
+            if (collision.gameObject.TryGetComponent<IRepelled>(out var repelled))
+            {
+                repelled.Push(transform.forward, m_WeaponData.RepulsiveForce);
             }
         }
 

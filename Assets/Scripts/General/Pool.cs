@@ -55,6 +55,19 @@ namespace VampireLike
             }
         }
 
+        public void ReturnAllPull()
+        {
+            foreach (var item in m_Objects)
+            {
+                item.gameObject.SetActive(false);
+
+                if (m_Parent != null)
+                {
+                    item.transform.SetParent(m_Parent);
+                }
+            }
+        }
+
         public void CreateParent(Transform parent)
         {
             m_Parent = parent;
