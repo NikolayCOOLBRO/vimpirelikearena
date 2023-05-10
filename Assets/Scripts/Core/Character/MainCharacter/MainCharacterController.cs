@@ -33,6 +33,13 @@ namespace VampireLike.Core.Characters
 
         public void Init()
         {
+            m_MainCharacter.SetCharacterMovement(new CharacterMovement());
+            m_MainCharacter.SetCharacterData(new CharacterData()
+            {
+                Speed = 20,
+                HealthPoints = 20,
+                ScaleDamage = 1
+            });
             m_MainCharacter.Init();
             m_CharacterWeapon.Init();
         }

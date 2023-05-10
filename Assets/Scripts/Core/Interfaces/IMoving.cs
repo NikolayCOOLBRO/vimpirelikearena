@@ -9,5 +9,7 @@ namespace VampireLike.Core
         void Move(Vector3 direction, float speed, Transform transform);
 
         void Stop();
+
+        void Start();
     }
 }

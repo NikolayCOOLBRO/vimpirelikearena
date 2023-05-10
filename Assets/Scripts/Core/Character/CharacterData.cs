@@ -4,11 +4,14 @@ using UnityEngine;
 
 namespace VampireLike.Core.Characters
 {
+    [SerializeField]
     public class CharacterData
     {
-        private float m_Speed;
-        private int m_HealthPoints;
-        private float m_ScaleDamge;
+
+        [Header("Only view")]
+        [SerializeField] private float m_Speed;
+        [SerializeField] private int m_HealthPoints;
+        [SerializeField] private float m_ScaleDamge;
 
         public float Speed { get => m_Speed; set => m_Speed = value; }
         public int HealthPoints { get => m_HealthPoints; set => m_HealthPoints = value; }

@@ -15,9 +15,9 @@ MonoBehaviour:
   m_WeaponData:
   - m_Name: Simple Projectile
     m_WeaponType: 1
-    m_AttackSpeed: 0.1
+    m_AttackSpeed: 1
     m_RepulsiveForce: 500
-    m_Damage: 5
+    m_Damage: 1
     m_ProjectileType: 1
     m_ProjectileSpeed: 12
     m_Distance: 50

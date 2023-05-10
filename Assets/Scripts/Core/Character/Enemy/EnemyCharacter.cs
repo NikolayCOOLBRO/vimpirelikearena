@@ -12,8 +12,6 @@ namespace VampireLike.Core.Characters.Enemies
         [SerializeField] private WeaponType m_WeaponType;
 
         private CharacterWeapon m_CharacterWeapon;
-        private CharacterData m_CharacterData;
-        private IMoving m_CharacterMovement;
         private IAttaching m_Attaching;
 
         private bool m_IsMove;
@@ -21,16 +19,6 @@ namespace VampireLike.Core.Characters.Enemies
         public WeaponType GetWeaponType()
         {
             return m_WeaponType;
-        }
-
-        public void Init()
-        {
-            m_CharacterData = new CharacterData()
-            {
-                Speed = 3f
-            };
-            m_CharacterMovement = new EnemyMovement();
-            m_CharacterWeapon.Init();
         }
 
         public void Move(IAttaching targetPosition)
@@ -85,13 +73,26 @@ namespace VampireLike.Core.Characters.Enemies
             while (gameObject.activeInHierarchy)
             {
                 m_IsMove = true;
-                m_CharacterMovement.Move(targetPosition.GetTarget().position, m_CharacterData.Speed * Time.deltaTime, transform);
+                m_Moving.Move(targetPosition.GetTarget().position, CharacterData.Speed * Time.deltaTime, transform);               
                 yield return null;
             }
 
             m_IsMove = false;
 
             yield break;
+        }
+
+        private IEnumerator StopTakeDamage()
+        {
+            yield return new WaitForSeconds(0.5f);
+            m_Moving.Start();
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            m_Moving.Stop();
+            StartCoroutine(StopTakeDamage());
+            base.TakeDamage(damage);
         }
     }
 }

@@ -85,6 +85,12 @@ namespace VampireLike.Core.Characters.Enemies
         {
             foreach (var enemy in m_Enemies)
             {
+                enemy.SetCharacterData(new CharacterData() { 
+                    Speed = 7,
+                    ScaleDamage = 1,
+                    HealthPoints = 5
+                });
+                enemy.SetCharacterMovement(new EnemyMovement());
                 enemy.Set(m_Attaching);
                 enemy.Init();
             }

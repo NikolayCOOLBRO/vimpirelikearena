@@ -24,6 +24,11 @@ namespace VampireLike.Core.Characters.Enemies
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, speed);
         }
 
+        public void Start()
+        {
+            m_IsStop = false;
+        }
+
         public void Stop()
         {
             m_IsStop = true;
