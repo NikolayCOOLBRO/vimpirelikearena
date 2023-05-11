@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VampireLike.Core.Characters;
 
-namespace VampireLike.Core.Level
+namespace VampireLike.Core.Levels
 {
 
     public class DeadGround : MonoBehaviour

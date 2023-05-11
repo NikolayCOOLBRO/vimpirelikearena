@@ -5,7 +5,7 @@ using VampireLike.Core.Input;
 
 namespace VampireLike.Core.Characters
 {
-    public class MainCharacter : GameCharacterBehaviour
+    public class MainCharacter : GameCharacterBehaviour, IHero
     {
         [SerializeField] private Transform m_WeaponPoint;
 
