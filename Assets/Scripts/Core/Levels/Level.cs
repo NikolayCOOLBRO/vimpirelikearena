@@ -24,6 +24,11 @@ namespace VampireLike.Core.Levels
 
         public void NextArena()
         {
+            if (m_CurrentChunk != null)
+            {
+                Destroy(m_CurrentChunk);
+            }
+
             var road = Instantiate(m_PrefabRoad, m_CurrentArena.EndPoint.position, Quaternion.identity, m_RoadParent);
             var arena = Instantiate(m_PrefabArena, m_CurrentArena.transform.position + Vector3.forward * 54, Quaternion.identity, m_ArenaParent);
 

@@ -12,7 +12,7 @@ namespace VampireLike.Core.Weapons
 
         public int Damage { get; set; }
         public float RepulsiveForce { get; set; }
-
+        
         protected bool m_IsMove;
         protected float m_Speed;
         protected float m_Distance;
@@ -55,7 +55,6 @@ namespace VampireLike.Core.Weapons
         private void Hit()
         {
             gameObject.SetActive(false);
-
 
             OnHit?.Invoke(this);
         }

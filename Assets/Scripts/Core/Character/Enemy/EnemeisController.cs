@@ -77,6 +77,11 @@ namespace VampireLike.Core.Characters.Enemies
 
             foreach (var enemy in m_Enemies)
             {
+                if (enemy == null || enemy.transform == null)
+                {
+                    continue;
+                }
+
                 var ray = new Ray(position, enemy.transform.position);
 
                 float calculateDistance = Vector3.Distance(position, enemy.transform.position);
@@ -92,20 +97,6 @@ namespace VampireLike.Core.Characters.Enemies
 
         public void Init()
         {
-            foreach (var enemy in m_Enemies)
-            {
-                enemy.SetCharacterData(new CharacterData() { 
-                    Speed = 7,
-                    ScaleDamage = 1,
-                    HealthPoints = 5
-                });
-                enemy.SetCharacterMovement(new EnemyMovement());
-                enemy.Set(m_Attaching);
-                enemy.Init();
-                enemy.OnDie += OnEnemyDie;
-            }
-
-            Attach();
         }
 
         public void SetAttaching(IAttaching attaching)
@@ -134,6 +125,28 @@ namespace VampireLike.Core.Characters.Enemies
             if (m_Enemies.Count == 0)
             {
                 OnAllDeadEnemies?.Invoke();
+            }
+        }
+
+        public void SetEnemies(List<EnemyCharacter> enemies)
+        {
+            m_Enemies = enemies;
+        }
+
+        public void InitEnemy()
+        {
+            foreach (var enemy in m_Enemies)
+            {
+                enemy.SetCharacterData(new CharacterData()
+                {
+                    Speed = 7,
+                    ScaleDamage = 1,
+                    HealthPoints = 5
+                });
+                enemy.SetCharacterMovement(new EnemyMovement());
+                enemy.Set(m_Attaching);
+                enemy.Init();
+                enemy.OnDie += OnEnemyDie;
             }
         }
     }

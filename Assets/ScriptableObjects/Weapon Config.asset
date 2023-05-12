@@ -17,7 +17,7 @@ MonoBehaviour:
     m_WeaponType: 1
     m_AttackSpeed: 1
     m_RepulsiveForce: 250
-    m_Damage: 10
+    m_Damage: 2
     m_ProjectileType: 1
     m_ProjectileSpeed: 12
     m_Distance: 50
