@@ -16,7 +16,7 @@ namespace VampireLike.Core.General
         [SerializeField] private PlayerInput m_PlayerInput;
         [SerializeField] private MainCharacterController m_MainCharacterController;
         [SerializeField] private WeaponsController m_WeaponsController;
-        [SerializeField] private Level m_Level;
+        [SerializeField] private LevelController m_LevelController;
 
         public void ControllersInit()
         {
@@ -56,7 +56,7 @@ namespace VampireLike.Core.General
         private void OnAllDeadEnemies()
         {
             m_MainCharacterController.StopShoot();
-            m_Level.NextArena();
+            m_LevelController.NextArena();
         }
     }
 }
