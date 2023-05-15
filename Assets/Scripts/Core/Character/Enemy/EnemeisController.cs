@@ -117,6 +117,7 @@ namespace VampireLike.Core.Characters.Enemies
 
         public void OnEnemyDie(GameCharacterBehaviour characterBehaviour)
         {
+            Debug.LogError("Die");
             characterBehaviour.OnDie -= OnEnemyDie;
             characterBehaviour.gameObject.SetActive(false);
             m_Enemies.Remove(characterBehaviour.GetComponent<EnemyCharacter>());

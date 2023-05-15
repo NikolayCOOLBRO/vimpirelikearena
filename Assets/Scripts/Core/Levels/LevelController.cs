@@ -21,12 +21,13 @@ namespace VampireLike.Core.Levels
         public void FirstArena()
         {
             SetChunk(m_ChunkConfigurator.GetRandomChunk(1, 55555555));
+            m_Level.InstallCurrentChunk();
         }
 
         public void NextArena()
         {
             m_Level.NextArena();
-            //SetChunk(m_ChunkConfigurator.GetRandomChunk(1, 55555555));
+            SetChunk(m_ChunkConfigurator.GetRandomChunk(1, 55555555));
         }
 
         public void SetChunk(Chunk chunk)

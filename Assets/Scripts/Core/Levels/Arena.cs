@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace VampireLike.Core.Levels
 
         private Tween m_Tween;
 
-        public void Scale(Vector3 scale)
+        public void Scale(Vector3 scale, Action action = null)
         {
             m_Tween?.Kill();
 
@@ -25,7 +26,11 @@ namespace VampireLike.Core.Levels
                                 setter => transform.localScale = setter,
                                 scale,
                                 1f)
-                        .SetEase(Ease.InOutBack);
+                        .SetEase(Ease.InOutBack)
+                        .OnComplete(() =>
+                        {
+                            action?.Invoke();
+                        });
 
             m_Tween.Play();
         }
