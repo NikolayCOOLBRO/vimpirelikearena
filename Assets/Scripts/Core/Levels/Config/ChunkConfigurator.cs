@@ -28,7 +28,7 @@ namespace VampireLike.Core.Levels
                 }
             }
         }
-        /*
+        
         public Chunk GetNumberArenaChunk(int numberArena, int seed)
         {
             var random = new System.Random(seed);
@@ -70,25 +70,14 @@ namespace VampireLike.Core.Levels
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (i == 0)
-                {
-                    if (randomValue <= list[i].Item1)
-                    {
-                        chunkTier = list[i].Item2;
-                    }
-                }
-                else if(i == list.Count - 1)
-                {
-                    chunkTier = list[i].Item2;
-                }
-
+                
             }
 
 
 
             return GetRandomChunk(chunkTier.Tier, seed);
         }
-        */
+        
         public Chunk GetRandomChunk(int tier, int seed)
         {
             var random = new System.Random(seed);
