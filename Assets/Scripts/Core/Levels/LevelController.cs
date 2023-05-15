@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VampireLike.Core.Players;
 
 namespace VampireLike.Core.Levels
 {
@@ -20,14 +21,14 @@ namespace VampireLike.Core.Levels
 
         public void FirstArena()
         {
-            SetChunk(m_ChunkConfigurator.GetRandomChunk(1, 55555555));
+            SetChunk(m_ChunkConfigurator.GetRandomChunk(1, PlayerController.Instance.Player.Seed));
             m_Level.InstallCurrentChunk();
         }
 
         public void NextArena()
         {
             m_Level.NextArena();
-            SetChunk(m_ChunkConfigurator.GetRandomChunk(1, 55555555));
+            SetChunk(m_ChunkConfigurator.GetRandomChunk(1, PlayerController.Instance.Player.Seed));
         }
 
         public void SetChunk(Chunk chunk)

@@ -91,8 +91,12 @@ namespace VampireLike.Core.Characters.Enemies
         public override void TakeDamage(int damage)
         {
             m_Moving.Stop();
-            StartCoroutine(StopTakeDamage());
             base.TakeDamage(damage);
+
+            if (CurrentHealthPoint > 0)
+            {
+                StartCoroutine(StopTakeDamage());
+            }
         }
     }
 }

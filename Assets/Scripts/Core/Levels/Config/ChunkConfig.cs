@@ -8,7 +8,11 @@ namespace VampireLike.Core.Levels
     public class ChunkConfig : ScriptableObject
     {
         [SerializeField] private List<Chunk> m_Chunks;
+        [Space]
+        [SerializeField] private List<ChunkTier> m_ChunkTiers;
 
         public List<Chunk> Chunks => m_Chunks;
+
+        public List<ChunkTier> ChunkTiers => m_ChunkTiers;
     }
 }

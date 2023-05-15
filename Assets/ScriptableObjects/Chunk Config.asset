@@ -14,3 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Chunks:
   - {fileID: 9114045137696439886, guid: b4e87754509ec344e8d2356fe12b386a, type: 3}
+  m_ChunkTiers:
+  - m_Tier: 1
+    "m_\u0421hanceStart": 80
+    m_ChanceMid: 15
+    m_ChanceEnd: 5
+  - m_Tier: 2
+    "m_\u0421hanceStart": 15
+    m_ChanceMid: 70
+    m_ChanceEnd: 15
+  - m_Tier: 3
+    "m_\u0421hanceStart": 5
+    m_ChanceMid: 15
+    m_ChanceEnd: 80

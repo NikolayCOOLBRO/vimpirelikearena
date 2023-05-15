@@ -5,6 +5,7 @@ using VampireLike.Core.Characters;
 using VampireLike.Core.Characters.Enemies;
 using VampireLike.Core.Input;
 using VampireLike.Core.Levels;
+using VampireLike.Core.Players;
 using VampireLike.Core.Weapons;
 
 namespace VampireLike.Core.General
@@ -59,6 +60,7 @@ namespace VampireLike.Core.General
 
         private void OnAllDeadEnemies()
         {
+            PlayerController.Instance.Player.QtyCompleteArean++;
             m_MainCharacterController.StopShoot();
             
             m_LevelController.NextArena();
