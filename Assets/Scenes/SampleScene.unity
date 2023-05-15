@@ -171,6 +171,7 @@ MonoBehaviour:
   m_MainCharacterController: {fileID: 160100215}
   m_WeaponsController: {fileID: 1389374114}
   m_LevelController: {fileID: 1232584695}
+  m_MISCController: {fileID: 1229112186}
 --- !u!1 &160100213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,10 +1062,55 @@ MonoBehaviour:
   m_PrefabArena: {fileID: 3237612562017587786, guid: b22d20effa3475841a62ea713d36bcec, type: 3}
   m_PrefabRoad: {fileID: 2199077576467010327, guid: 0648dcf13470c9347af21455bc9fc326, type: 3}
   m_CurrentArena: {fileID: 1456348441}
-  m_CurrentChunk: {fileID: 0}
+  m_CurrentChunkPrefab: {fileID: 0}
   m_RoadParent: {fileID: 1596751357}
   m_ArenaParent: {fileID: 1347529005}
   m_ChunkParent: {fileID: 1984111648}
+--- !u!1 &1134911277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134911278}
+  - component: {fileID: 1134911279}
+  m_Layer: 0
+  m_Name: Follower Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1134911278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134911277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1229112185}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1134911279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134911277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7262552a06c97441a725f027c8c4eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 442098290}
+  m_Camera: {fileID: 963194227}
 --- !u!1 &1188499884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,6 +1155,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControllersManager: {fileID: 110106760}
+--- !u!1 &1229112184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229112185}
+  - component: {fileID: 1229112186}
+  m_Layer: 0
+  m_Name: MISC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1229112185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229112184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.9581175, y: 18.560188, z: 55.491425}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1134911278}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1229112186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229112184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94459bbc7c9f3b8419a01dc879cec8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FollowerCamera: {fileID: 1134911279}
 --- !u!1 &1232584693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,17 +1760,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1347529005}
     m_Modifications:
-    - target: {fileID: 3237612561639146842, guid: b22d20effa3475841a62ea713d36bcec, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3237612561639146842, guid: b22d20effa3475841a62ea713d36bcec, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 21.4
-      objectReference: {fileID: 0}
     - target: {fileID: 3237612562017587780, guid: b22d20effa3475841a62ea713d36bcec, type: 3}
       propertyPath: m_Name
       value: Arena
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237612562017587786, guid: b22d20effa3475841a62ea713d36bcec, type: 3}
+      propertyPath: m_IsEnter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3237612562017587787, guid: b22d20effa3475841a62ea713d36bcec, type: 3}
       propertyPath: m_RootOrder

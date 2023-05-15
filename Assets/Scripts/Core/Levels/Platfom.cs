@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,10 @@ namespace VampireLike.Core.Levels
 {
     public class Platfom : MonoBehaviour
     {
-        [SerializeField] private bool m_Test;
+        private bool m_IsExite;
+
+        public event Action OnExitePlatform;
+        public bool IsExite => m_IsExite;
 
         private Tween m_Tween;
 
@@ -28,7 +32,9 @@ namespace VampireLike.Core.Levels
         {
             if (collision.gameObject.TryGetComponent<IHero>(out var hero))
             {
+                m_IsExite = false;
                 Move(Vector3.up * 10 * -1);
+                OnExitePlatform?.Invoke();
             }
         }
     }

@@ -32,6 +32,8 @@ namespace VampireLike.Core.Levels
 
             var road = Instantiate(m_PrefabRoad, m_CurrentArena.EndPoint.position, Quaternion.identity, m_RoadParent);
             var arena = Instantiate(m_PrefabArena, m_CurrentArena.transform.position + Vector3.forward * 54, Quaternion.identity, m_ArenaParent);
+            
+            arena.OnSteppedArena += InstallCurrentChunk;
 
             arena.gameObject.SetActive(false);
             arena.transform.localScale = Vector3.zero;
@@ -42,7 +44,7 @@ namespace VampireLike.Core.Levels
             road.gameObject.SetActive(true);
 
             road.Move(Vector3.up * 10);
-            arena.Scale(Vector3.one, InstallCurrentChunk);
+            arena.Scale(Vector3.one);
 
             m_CurrentArena = arena;
         }

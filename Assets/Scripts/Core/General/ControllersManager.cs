@@ -17,6 +17,7 @@ namespace VampireLike.Core.General
         [SerializeField] private MainCharacterController m_MainCharacterController;
         [SerializeField] private WeaponsController m_WeaponsController;
         [SerializeField] private LevelController m_LevelController;
+        [SerializeField] private MISCController m_MISCController;
 
         public void ControllersInit()
         {
@@ -31,6 +32,7 @@ namespace VampireLike.Core.General
             m_EnemeisController.Init();
             m_MainCharacterController.Init();
             m_LevelController.Init();
+            m_MISCController.Init();
 
             m_LevelController.FirstArena();
             StartGameLoop();
@@ -52,6 +54,7 @@ namespace VampireLike.Core.General
         {
             m_MainCharacterController.StartShoot();
             m_EnemeisController.StartShoot();
+            m_EnemeisController.Attach();
         }
 
         private void OnAllDeadEnemies()
@@ -66,6 +69,8 @@ namespace VampireLike.Core.General
             m_EnemeisController.SetEnemies(chunk.Enemies);
             m_EnemeisController.InitEnemy();
             m_WeaponsController.GaveWeapons(m_EnemeisController.NeedingWeapons);
+
+            StartGameLoop();
         }
     }
 }
