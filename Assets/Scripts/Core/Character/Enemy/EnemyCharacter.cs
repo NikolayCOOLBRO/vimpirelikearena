@@ -31,6 +31,11 @@ namespace VampireLike.Core.Characters.Enemies
             StartCoroutine(MoveCoroutine(targetPosition));
         }
 
+        public void InitWeapon()
+        {
+            m_CharacterWeapon.Init();
+        }
+
         public void Rotate(Vector3 angle)
         {
             transform.eulerAngles = angle;

@@ -150,5 +150,13 @@ namespace VampireLike.Core.Characters.Enemies
                 enemy.OnDie += OnEnemyDie;
             }
         }
+
+        public void InitEnemeisWeapons()
+        {
+            foreach (var item in m_Enemies)
+            {
+                item.InitWeapon();
+            }
+        }
     }
 }

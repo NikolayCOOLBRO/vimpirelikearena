@@ -8,7 +8,9 @@ namespace VampireLike.Core.Players
     public class Player
     {
         [SerializeField] private int m_Seed;
-        [SerializeField] private int m_QtyCompleteArean;
+        [SerializeField] private int m_QtyCompleteArens;
+        [SerializeField] private int m_Node;
+        [SerializeField] private int m_QtyArenas;
 
         public int Seed 
         {
@@ -18,8 +20,20 @@ namespace VampireLike.Core.Players
 
         public int QtyCompleteArean
         {
-            get => m_QtyCompleteArean;
-            set => m_QtyCompleteArean = value;
+            get => m_QtyCompleteArens;
+            set => m_QtyCompleteArens = value;
+        }
+
+        public int Node
+        {
+            get => m_Node;
+            set => m_Node = value;
+        }
+
+        public int QtyArenas
+        {
+            get => m_QtyArenas;
+            set => m_QtyArenas = value;
         }
     }
 }

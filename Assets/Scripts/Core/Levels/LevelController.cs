@@ -27,8 +27,12 @@ namespace VampireLike.Core.Levels
 
         public void NextArena()
         {
+            int seed = PlayerController.Instance.Player.Seed;
+
+            m_ChunkConfigurator.Overflow(PlayerController.Instance.Player.Node, PlayerController.Instance.Player.QtyArenas - 1);
+            m_ChunkConfigurator.Show();
             m_Level.NextArena();
-            SetChunk(m_ChunkConfigurator.GetRandomChunk(1, PlayerController.Instance.Player.Seed));
+            SetChunk(m_ChunkConfigurator.GetRandomChunk(m_ChunkConfigurator.GetTier(seed), seed));
         }
 
         public void SetChunk(Chunk chunk)

@@ -60,10 +60,18 @@ namespace VampireLike.Core.General
 
         private void OnAllDeadEnemies()
         {
-            PlayerController.Instance.Player.QtyCompleteArean++;
+            PlayerController.Instance.CompleteArena();
             m_MainCharacterController.StopShoot();
-            
-            m_LevelController.NextArena();
+
+            if (PlayerController.Instance.IsCompleteLevel())
+            {
+                Debug.LogError("Complete");
+            }
+            else
+            {
+                PlayerController.Instance.StartRoad();
+                m_LevelController.NextArena();
+            }
         }
 
         private void OnSetChunk(Chunk chunk)
@@ -71,6 +79,7 @@ namespace VampireLike.Core.General
             m_EnemeisController.SetEnemies(chunk.Enemies);
             m_EnemeisController.InitEnemy();
             m_WeaponsController.GaveWeapons(m_EnemeisController.NeedingWeapons);
+            m_EnemeisController.InitEnemeisWeapons();
 
             StartGameLoop();
         }

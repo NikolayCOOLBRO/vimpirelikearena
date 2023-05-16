@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 
@@ -10,10 +11,13 @@ namespace VampireLike.Core.Levels
         [SerializeField] private ChunkConfig m_ChunkConfig;
 
         private Dictionary<int, List<Chunk>> m_Chunks;
+        private List<ChunkTier> m_ChunkTiers;
 
         public void Init()
         {
             m_Chunks = new Dictionary<int, List<Chunk>>();
+
+            m_ChunkTiers = new List<ChunkTier>();
 
             foreach (var item in m_ChunkConfig.Chunks)
             {
@@ -27,57 +31,36 @@ namespace VampireLike.Core.Levels
                     m_Chunks[item.Tier].Add(item);
                 }
             }
+
+            foreach (var item in m_ChunkConfig.ChunkTierConfig.StartDataChunks)
+            {
+                m_ChunkTiers.Add(new ChunkTier()
+                {
+                    Tier = item.Tier,
+                    Percent = item.Percent
+                });
+            }
         }
         
-        public Chunk GetNumberArenaChunk(int numberArena, int seed)
+        public int GetTier(int seed)
         {
             var random = new System.Random(seed);
 
-            int zero = 0;
+            var list = new List<int>();
 
-            var dic = new Dictionary<int, int>();
-
-            List<(int, ChunkTier)> list = new List<(int, ChunkTier)>();
-
-            if (numberArena == 1)
+            foreach (var item in m_ChunkTiers)
             {
-                foreach (var item in m_ChunkConfig.ChunkTiers)
+                for (int i = 0; i < item.Percent; i++)
                 {
-                    zero += item.ChanceStart;
-                    list.Add((zero, item));
-                }
-            }
-            else if (numberArena == 5)
-            {
-                foreach (var item in m_ChunkConfig.ChunkTiers)
-                {
-                    zero += item.ChanceEnd;
-                    list.Add((zero, item));
-                }
-            }
-            else
-            {
-                foreach (var item in m_ChunkConfig.ChunkTiers)
-                {
-                    zero += item.ChanceMid;
-                    list.Add((zero, item));
+                    list.Add(item.Tier);
                 }
             }
 
-            int randomValue = random.Next(0, 100);
+            int result = list[random.Next(0, list.Count)];
 
-            var chunkTier = new ChunkTier();
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                
-            }
-
-
-
-            return GetRandomChunk(chunkTier.Tier, seed);
+            return result;
         }
-        
+
         public Chunk GetRandomChunk(int tier, int seed)
         {
             var random = new System.Random(seed);
@@ -85,6 +68,62 @@ namespace VampireLike.Core.Levels
             int index = random.Next(0, m_Chunks[tier].Count);
 
             return m_Chunks[tier][index];
+        }
+
+        public void Overflow(int currentNode, int maxNode)
+        {
+            int procent = PowerOverflowing(maxNode, m_ChunkConfig.ChunkTierConfig.PrecentageOverflow);
+            Debug.LogError(procent);
+            FlowPercentage(procent, m_ChunkTiers, currentNode, maxNode);
+        }
+
+        public void Show()
+        {
+            Debug.Log(StringTier());
+        }
+
+        private string StringTier()
+        {
+            var strBuild = new StringBuilder();
+
+            foreach (var item in m_ChunkTiers)
+            {
+                strBuild.Append(item.Tier)
+                        .Append(' ')
+                        .Append('-')
+                        .Append(' ')
+                        .Append(item.Percent)
+                        .Append('.')
+                        .Append('\n');
+            }
+
+            return strBuild.ToString();
+        }
+
+        //TODO Кринж но всё по ТЗ
+        private void FlowPercentage(int percent, List<ChunkTier> tiers, int currentNode, int maxNode)
+        {
+            if (currentNode < maxNode/2)
+            {
+                var tier1 = tiers.Find(item => item.Tier == 1);
+                tier1.Percent -= percent;
+                var tier2 = tiers.Find(item => item.Tier == 2);
+                tier2.Percent += percent;
+            }
+            else
+            {
+                var tier1 = tiers.Find(item => item.Tier == 1);
+                tier1.Percent -= percent;
+                var tier2 = tiers.Find(item => item.Tier == 2);
+                tier2.Percent -= percent;
+                var tier3 = tiers.Find(item => item.Tier == 3);
+                tier3.Percent += percent * 2;
+            }
+        }
+
+        private int PowerOverflowing(int numberNode, int percent)
+        {
+            return percent / numberNode;
         }
     }
 }
