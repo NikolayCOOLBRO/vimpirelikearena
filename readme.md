@@ -104,3 +104,22 @@
 У `Chunk` есть свой тир, а так же должен быть реализован множитель ХП, но на момент написание *README.md* он не реализован.
 
 `Chunk`'и настраиваються через `ChunkConfig`, там настраиваються данные для тиров, а также лежат все префабы.
+
+## Классы
+|Название|Что делает|
+|---------|----------|
+|`FollowerCamera`|Перемищение камеры|
+|`EnemyConfig`|*Не реализован*|
+|`EnemeisController`|Котроллер врагов|
+|`EnemyCharacter`|Класс который отвечает за врагов|
+|`EnemyMovement`|Перемищение врага|
+|`MainCharacter`|Класс ГГ|
+|`MainCharacterController`|Контроллер ГГ|
+|`CharacterData`|Данные персонажей|
+|`CharacterMovement`|Передвижение персонажа|
+|`GameCharacterBehaviour`|Общий класс для персонажа|
+|`ControllerManager`|Общий контроллер для контроллеров|
+|`EntryPoint`|Точка входа на `SampleScene`|
+|`MISCController`|Контроллер для *хлама*|
+|`OnColiderEnterComponent`|Вызывает события по касанию колайдера|
+|`PlayerInput`|Обработка ввода игрока|
