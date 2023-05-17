@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using VampireLike.Core.Players;
 
+
+
 namespace VampireLike.StartScenes
 {
     public class StartSceneIniter : MonoBehaviour
